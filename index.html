@@ -6,6 +6,10 @@
 <meta name="theme-color" content="#f5f0e7">
 <title>Hermosa Paints | Unleash Colour</title>
 <meta name="description" content="Hermosa Paints: interior, exterior, wood, metal, road, floor, roof, waterproofing and texture finishes engineered for Kenya.">
+<script>
+/* Password gate: hide the site until unlocked (remembered for this browser tab session) */
+try{if(sessionStorage.getItem('hp-unlocked')!=='1')document.documentElement.classList.add('locked')}catch(e){document.documentElement.classList.add('locked')}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
@@ -413,9 +417,52 @@ body.lock{overflow:hidden}
 .reveal{opacity:0;transform:translateY(40px);transition:opacity .9s,transform .9s cubic-bezier(.2,.7,.2,1)}
 .reveal.in{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+
+/* ===== PASSWORD GATE ===== */
+#gate{display:none}
+html.locked body{overflow:hidden}
+html.locked body>*:not(#gate){display:none!important}
+html.locked #gate{display:grid}
+#gate{position:fixed;inset:0;z-index:100;place-items:center;padding:24px;background:var(--paper);overflow:hidden}
+#gate .g-blob{position:absolute;border-radius:50%;filter:blur(60px);opacity:.45}
+.g-card{display:block;position:relative;width:min(440px,100%);background:#fff;border:1px solid var(--line);border-radius:32px;padding:36px 30px 30px;box-shadow:0 40px 80px -40px rgba(0,0,0,.35);text-align:center}
+.g-card img{height:38px;margin:0 auto 26px}
+.g-card h1{font-size:clamp(34px,8vw,46px);line-height:.95;letter-spacing:-.04em;font-weight:800}
+.g-card h1 .serif{color:var(--red)}
+.g-card p{color:var(--muted);margin:12px 0 26px;font-size:15px}
+.g-field{position:relative}
+.g-field input{width:100%;font:inherit;font-size:16px;padding:15px 52px 15px 18px;border-radius:999px;border:1.5px solid var(--line);background:var(--paper);color:var(--ink);outline:none;transition:border .2s}
+.g-field input:focus{border-color:var(--ink)}
+.g-field .eye{position:absolute;right:8px;top:50%;transform:translateY(-50%);width:38px;height:38px;border-radius:50%;font-size:16px;color:var(--muted)}
+.g-card .btn{width:100%;justify-content:center;margin-top:12px}
+.g-err{color:var(--red);font-size:14px;font-weight:600;min-height:22px;margin-top:12px}
+.g-card.shake{animation:shake .4s}
+@keyframes shake{20%,60%{transform:translateX(-8px)}40%,80%{transform:translateX(8px)}}
+.g-swatch{display:flex;justify-content:center;gap:6px;margin-top:22px}
+.g-swatch i{width:18px;height:6px;border-radius:6px}
+#gate.out{opacity:0;transition:opacity .5s}
 </style>
 </head>
 <body>
+
+<!-- PASSWORD GATE -->
+<div id="gate" role="dialog" aria-modal="true" aria-labelledby="g-title">
+  <div class="g-blob" style="width:420px;height:420px;background:var(--yellow);top:-140px;left:-120px"></div>
+  <div class="g-blob" style="width:360px;height:360px;background:var(--pink);bottom:-140px;right:-100px"></div>
+  <form class="g-card" id="gform" autocomplete="off">
+    <img src="https://hermosapaints.com/images/Hermosa-Logo.webp" alt="Hermosa Paints">
+    <h1 id="g-title">Private <span class="serif">preview.</span></h1>
+    <p>This site is password protected. Enter the password to continue.</p>
+    <div class="g-field">
+      <input id="gpw" type="password" placeholder="Password" aria-label="Password" required autofocus>
+      <button type="button" class="eye" aria-label="Show password" onclick="const i=document.getElementById('gpw');i.type=i.type==='password'?'text':'password'">👁</button>
+    </div>
+    <button class="btn btn-dark" type="submit">Enter site <span class="arr">→</span></button>
+    <div class="g-err" id="gerr" aria-live="polite"></div>
+    <div class="g-swatch"><i style="background:var(--red)"></i><i style="background:var(--yellow)"></i><i style="background:var(--pink)"></i><i style="background:var(--teal)"></i><i style="background:var(--blue)"></i></div>
+  </form>
+</div>
+
 
 <!-- NAV -->
 <header class="nav">
@@ -783,6 +830,29 @@ const cf=document.getElementById('cform'),msg=document.getElementById('msg');
 msg.oninput=()=>document.getElementById('cnt').textContent=msg.value.length+'/500';
 cf.onsubmit=e=>{e.preventDefault();let ok=true;cf.querySelectorAll('[required]').forEach(f=>{const v=f.type==='email'?/^\S+@\S+\.\S+$/.test(f.value):f.value.trim();f.style.borderColor=v?'':'var(--red)';if(!v)ok=false});if(ok)cf.classList.add('done')};
 function resetForm(){cf.reset();cf.classList.remove('done');document.getElementById('cnt').textContent='0/500'}
+</script>
+<script>
+/* Password gate logic: compares a SHA-256 hash, so the password isn't stored in plain text */
+(function(){
+const H='32634a633e670c70239a6d7292359e5f75a19eb75345ac6315faf979284429e3';
+function sha256(str){const K=[],R=(n,x)=>(x>>>n)|(x<<(32-n));let h=[],p=2,c=0;
+ while(c<64){let pr=1;for(let d=2;d*d<=p;d++)if(p%d===0){pr=0;break}if(pr){if(c<8)h[c]=(Math.pow(p,.5)*4294967296)|0;K[c++]=(Math.pow(p,1/3)*4294967296)|0}p++}
+ const b=unescape(encodeURIComponent(str)),w=[],l=b.length*8;let m=b+'\x80';while(m.length%64!==56)m+='\x00';
+ for(let i=0;i<m.length;i++)w[i>>2]|=m.charCodeAt(i)<<((3-i)%4*8);w.push(0,l);
+ for(let j=0;j<w.length;j+=16){const W=w.slice(j,j+16);let [a,bb,cc,d,e,f,g,hh]=h;
+  for(let i=0;i<64;i++){if(i>15){const x=W[i-15],y=W[i-2];W[i]=(W[i-16]+(R(7,x)^R(18,x)^(x>>>3))+W[i-7]+(R(17,y)^R(19,y)^(y>>>10)))|0}
+   const t1=(hh+(R(6,e)^R(11,e)^R(25,e))+((e&f)^(~e&g))+K[i]+W[i])|0,t2=((R(2,a)^R(13,a)^R(22,a))+((a&bb)^(a&cc)^(bb&cc)))|0;
+   hh=g;g=f;f=e;e=(d+t1)|0;d=cc;cc=bb;bb=a;a=(t1+t2)|0}
+  h=[a,bb,cc,d,e,f,g,hh].map((v,i)=>(h[i]+v)|0)}
+ return h.map(v=>('00000000'+(v>>>0).toString(16)).slice(-8)).join('')}
+const g=document.getElementById('gate'),f=document.getElementById('gform'),pw=document.getElementById('gpw'),er=document.getElementById('gerr');
+if(document.documentElement.classList.contains('locked'))setTimeout(()=>pw.focus(),50);
+f.onsubmit=e=>{e.preventDefault();
+ if(sha256(pw.value)===H){try{sessionStorage.setItem('hp-unlocked','1')}catch(x){}
+  g.classList.add('out');setTimeout(()=>{document.documentElement.classList.remove('locked');g.remove();window.scrollTo(0,0)},450)}
+ else{er.textContent='Incorrect password. Please try again.';f.classList.remove('shake');void f.offsetWidth;f.classList.add('shake');pw.select()}};
+pw.oninput=()=>er.textContent='';
+})();
 </script>
 </body>
 </html>
