@@ -1,0 +1,788 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f5f0e7">
+<title>Hermosa Paints | Unleash Colour</title>
+<meta name="description" content="Hermosa Paints: interior, exterior, wood, metal, road, floor, roof, waterproofing and texture finishes engineered for Kenya.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#16130f; --ink-2:#2a251f; --paper:#f5f0e7; --paper-2:#ebe3d5; --line:rgba(22,19,15,.14);
+  --muted:#6d6457; --red:#e2452f; --yellow:#f3b63a; --teal:#1f7a6d; --blue:#2c5fd6; --pink:#ee8fa8;
+  --radius:22px; --sans:"Bricolage Grotesque",system-ui,sans-serif; --serif:"Instrument Serif",Georgia,serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.55;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+.wrap{width:min(1280px,100% - 32px);margin-inline:auto}
+@media(min-width:700px){.wrap{width:min(1280px,100% - 64px)}}
+.serif{font-family:var(--serif);font-weight:400;font-style:italic;letter-spacing:-.01em}
+.eyebrow{font-size:13px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;display:inline-flex;align-items:center;gap:10px}
+.eyebrow::before{content:"";width:22px;height:10px;border-radius:10px;background:var(--red)}
+h2.big{font-size:clamp(40px,7vw,96px);line-height:.95;letter-spacing:-.035em;font-weight:800}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:15px 24px;border-radius:999px;font-weight:600;font-size:15px;transition:transform .25s,background .25s,color .25s}
+.btn:hover{transform:translateY(-2px)}
+.btn-dark{background:var(--ink);color:var(--paper)}
+.btn-light{background:var(--paper);color:var(--ink)}
+.btn-line{border:1.5px solid currentColor}
+.btn .arr{transition:transform .25s}.btn:hover .arr{transform:translateX(4px)}
+section{padding:110px 0}
+@media(max-width:700px){section{padding:76px 0}}
+
+/* NAV */
+.nav{position:fixed;inset:14px 0 auto;z-index:50}
+.nav-in{display:flex;align-items:center;justify-content:space-between;gap:16px;background:rgba(245,240,231,.82);backdrop-filter:blur(14px);border:1px solid var(--line);border-radius:999px;padding:10px 10px 10px 22px}
+.nav-logo img{height:34px;width:auto}
+.nav-links{display:flex;gap:4px}
+.nav-links a{padding:9px 15px;border-radius:999px;font-size:15px;font-weight:600;transition:background .2s}
+.nav-links a:hover{background:var(--paper-2)}
+.burger{display:none;width:44px;height:44px;border-radius:50%;background:var(--ink);color:var(--paper);font-size:20px}
+@media(max-width:960px){.nav-links,.nav-cta{display:none}.burger{display:block}}
+.mobile-menu{position:fixed;inset:0;z-index:60;background:var(--ink);color:var(--paper);padding:100px 24px 40px;display:flex;flex-direction:column;gap:6px;transform:translateY(-100%);transition:transform .5s cubic-bezier(.7,0,.2,1)}
+.mobile-menu.open{transform:none}
+.mobile-menu a{font-size:44px;font-weight:800;letter-spacing:-.03em;border-bottom:1px solid rgba(255,255,255,.12);padding:8px 0}
+.mobile-menu .close{position:absolute;top:24px;right:24px;width:48px;height:48px;border-radius:50%;background:var(--paper);color:var(--ink);font-size:22px}
+
+/* HERO */
+.hero{padding:130px 0 40px;position:relative}
+.hero-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:40px;align-items:end}
+@media(max-width:960px){.hero-grid{grid-template-columns:1fr}}
+.hero h1{font-size:clamp(56px,10.5vw,168px);line-height:.86;letter-spacing:-.05em;font-weight:800}
+.hero h1 .serif{display:block;font-size:.82em;color:var(--red)}
+.rotator{display:inline-block;position:relative;height:1em;overflow:hidden;vertical-align:bottom;min-width:2ch}
+.rotator span{display:block;height:1em;line-height:1;transition:transform .7s cubic-bezier(.7,0,.2,1)}
+.hero-sub{margin-top:28px;max-width:470px;font-size:19px;color:var(--ink-2)}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.hero-visual{position:relative;aspect-ratio:4/4.6;border-radius:180px 180px var(--radius) var(--radius);overflow:hidden;background:var(--paper-2)}
+.hero-visual img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.08);transition:opacity 1s,transform 6s ease-out}
+.hero-visual img.on{opacity:1;transform:scale(1)}
+.hero-tag{position:absolute;left:18px;bottom:18px;background:var(--paper);border-radius:999px;padding:10px 16px 10px 10px;display:flex;align-items:center;gap:10px;font-weight:600;font-size:14px}
+.hero-tag i{width:26px;height:26px;border-radius:50%;background:var(--red);transition:background .6s}
+.blob{position:absolute;border-radius:50%;filter:blur(2px);z-index:-1}
+.hero-dots{display:flex;gap:6px;margin-top:22px;flex-wrap:wrap}
+.hero-dots button{width:30px;height:6px;border-radius:6px;background:var(--line);transition:background .3s,width .3s}
+.hero-dots button.on{background:var(--ink);width:54px}
+
+/* MARQUEE */
+.marquee{background:var(--ink);color:var(--paper);overflow:hidden;padding:22px 0;transform:rotate(-1.5deg);margin:50px -20px 0}
+.marquee-track{display:flex;gap:48px;width:max-content;animation:scroll 40s linear infinite}
+.marquee span{font-size:clamp(28px,4vw,52px);font-weight:800;letter-spacing:-.03em;white-space:nowrap;display:flex;align-items:center;gap:48px}
+.marquee span::after{content:"";width:22px;height:22px;border-radius:50%;background:var(--yellow)}
+.marquee span:nth-child(3n+2)::after{background:var(--red)}
+.marquee span:nth-child(3n)::after{background:var(--teal)}
+@keyframes scroll{to{transform:translateX(-50%)}}
+
+/* STATS */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:60px}
+@media(max-width:860px){.stats{grid-template-columns:repeat(2,1fr)}}
+.stat{border-radius:var(--radius);padding:28px 24px;min-height:200px;display:flex;flex-direction:column;justify-content:space-between}
+.stat b{font-size:clamp(42px,5vw,68px);letter-spacing:-.04em;line-height:1;font-weight:800}
+.stat p{font-weight:600;font-size:15px}
+.s1{background:var(--yellow)}.s2{background:var(--ink);color:var(--paper)}.s3{background:var(--pink)}.s4{background:var(--teal);color:var(--paper)}
+
+/* PRODUCTS */
+.sec-head{display:flex;justify-content:space-between;align-items:end;gap:30px;flex-wrap:wrap;margin-bottom:50px}
+.sec-head p{max-width:420px;color:var(--muted)}
+.cats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+@media(max-width:960px){.cats{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.cats{grid-template-columns:1fr}}
+.cat{position:relative;border-radius:var(--radius);overflow:hidden;aspect-ratio:1/1.12;background:var(--ink);color:#fff;isolation:isolate}
+.cat.wide{grid-column:span 2;aspect-ratio:auto}
+@media(max-width:520px){.cat.wide{grid-column:auto;aspect-ratio:1/1.12}}
+.cat img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+.cat::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 35%,rgba(0,0,0,.72));z-index:-1}
+.cat:hover img{transform:scale(1.07)}
+.cat-body{position:absolute;inset:auto 20px 20px;display:flex;justify-content:space-between;align-items:end;gap:10px}
+.cat h3{font-size:28px;line-height:1;letter-spacing:-.03em;font-weight:800}
+.cat h3 em{font-family:var(--serif);font-weight:400;display:block;font-size:.8em}
+.cat .go{width:44px;height:44px;border-radius:50%;background:#fff;color:var(--ink);display:grid;place-items:center;flex:none;transition:transform .3s}
+.cat:hover .go{transform:rotate(-45deg)}
+.badge{position:absolute;top:16px;left:16px;background:var(--yellow);color:var(--ink);font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:6px 12px;border-radius:999px}
+.num{position:absolute;top:16px;right:18px;font-size:13px;font-weight:600;opacity:.8}
+
+.featured{margin-top:70px;display:grid;grid-template-columns:320px 1fr;gap:30px;align-items:center}
+@media(max-width:860px){.featured{grid-template-columns:1fr}}
+.feat-list{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:10px;scrollbar-width:none}
+.feat-list::-webkit-scrollbar{display:none}
+.feat{flex:0 0 220px;scroll-snap-align:start;background:#fff;border-radius:var(--radius);padding:16px;border:1px solid var(--line)}
+.feat-img{aspect-ratio:1;border-radius:14px;background:var(--paper-2);display:grid;place-items:center;overflow:hidden}
+.feat-img img{width:80%;height:80%;object-fit:contain;transition:transform .4s}
+.feat:hover .feat-img img{transform:translateY(-6px) rotate(-3deg)}
+.feat h4{margin-top:14px;font-size:18px;letter-spacing:-.01em}
+.feat small{color:var(--muted);font-size:13px}
+
+/* COLOURS */
+.colours{background:var(--ink);color:var(--paper);border-radius:40px;margin:0 12px;overflow:hidden}
+.colours .sec-head p{color:rgba(245,240,231,.65)}
+.fam-tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:34px}
+.fam-tabs button{padding:10px 16px 10px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.18);display:flex;gap:10px;align-items:center;font-weight:600;font-size:15px;transition:background .2s,color .2s}
+.fam-tabs button i{width:22px;height:22px;border-radius:50%}
+.fam-tabs button.on{background:var(--paper);color:var(--ink)}
+.fam-stage{display:grid;grid-template-columns:1fr 1.2fr;gap:30px}
+@media(max-width:860px){.fam-stage{grid-template-columns:1fr}}
+.fam-info h3{font-size:clamp(48px,6vw,84px);letter-spacing:-.04em;line-height:.9;font-weight:800}
+.fam-info p{margin-top:18px;color:rgba(245,240,231,.75);max-width:380px}
+.pairings{margin-top:26px;display:flex;flex-wrap:wrap;gap:8px}
+.pairings span{font-size:13px;border:1px solid rgba(255,255,255,.2);padding:6px 12px;border-radius:999px}
+.swatches{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;min-height:340px}
+.sw{border-radius:18px;display:flex;flex-direction:column;justify-content:flex-end;padding:16px;font-weight:600;font-size:14px;transition:flex .4s,transform .4s;animation:rise .6s both}
+.sw:nth-child(2){animation-delay:.07s}.sw:nth-child(3){animation-delay:.14s}.sw:nth-child(4){animation-delay:.21s}
+.sw:hover{transform:translateY(-8px)}
+.sw code{font-family:ui-monospace,monospace;font-size:12px;opacity:.7;font-weight:400}
+@keyframes rise{from{opacity:0;transform:translateY(30px)}}
+@media(max-width:520px){.swatches{grid-template-columns:repeat(2,1fr);min-height:auto}.sw{aspect-ratio:1}}
+
+/* THEORY */
+.theory{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media(max-width:960px){.theory{grid-template-columns:1fr}}
+.th{border-radius:var(--radius);background:#fff;border:1px solid var(--line);overflow:hidden;display:flex;flex-direction:column}
+.th-img{aspect-ratio:16/11;overflow:hidden;position:relative}
+.th-img img{width:100%;height:100%;object-fit:cover}
+.ratio{display:flex;height:10px;gap:3px;margin:20px 22px 0}
+.ratio i{border-radius:10px;height:100%}
+.ratio-l{display:flex;gap:3px;margin:6px 22px 0;font-size:12px;font-weight:600;color:var(--muted)}
+.th-body{padding:18px 22px 24px}
+.th-body small{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--red)}
+.th-body h3{font-size:30px;letter-spacing:-.03em;margin:4px 0 8px}
+.th-body p{color:var(--muted);font-size:15px}
+.th-body .chips{margin-top:14px;display:flex;flex-wrap:wrap;gap:6px}
+.th-body .chips span{font-size:12px;background:var(--paper);padding:5px 10px;border-radius:999px;font-weight:600}
+
+/* INSPIRATION */
+.insp-scroll{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding:0 max(16px,calc((100vw - 1280px)/2)) 20px;scrollbar-width:none;cursor:grab}
+.insp-scroll::-webkit-scrollbar{display:none}
+.insp{flex:0 0 min(360px,80vw);scroll-snap-align:start;position:relative}
+.insp-img{aspect-ratio:3/4;border-radius:200px 200px var(--radius) var(--radius);overflow:hidden}
+.insp:nth-child(even) .insp-img{border-radius:var(--radius) var(--radius) 200px 200px}
+.insp-img img{width:100%;height:100%;object-fit:cover;transition:transform .8s}
+.insp:hover .insp-img img{transform:scale(1.06)}
+.insp-meta{display:flex;gap:12px;margin-top:16px}
+.insp-meta b{font-size:14px;color:var(--muted);font-weight:600;padding-top:6px}
+.insp h3{font-size:26px;letter-spacing:-.03em;line-height:1.05}
+.insp h3 em{font-family:var(--serif);font-weight:400;color:var(--muted);font-size:.8em;display:block}
+.insp p{color:var(--muted);font-size:15px;margin-top:6px}
+.scroll-ctrl{display:flex;gap:8px}
+.scroll-ctrl button{width:54px;height:54px;border-radius:50%;border:1.5px solid var(--ink);font-size:20px;transition:background .2s,color .2s}
+.scroll-ctrl button:hover{background:var(--ink);color:var(--paper)}
+
+/* PROJECTS */
+.proj{display:grid;grid-template-columns:repeat(12,1fr);gap:14px}
+.pj{position:relative;border-radius:var(--radius);overflow:hidden;color:#fff;min-height:320px;isolation:isolate}
+.pj:nth-child(1){grid-column:span 7;min-height:460px}
+.pj:nth-child(2){grid-column:span 5;min-height:460px}
+.pj:nth-child(3){grid-column:span 5}
+.pj:nth-child(4){grid-column:span 7}
+@media(max-width:860px){.pj{grid-column:1/-1!important;min-height:320px!important}}
+.pj img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;transition:transform .8s}
+.pj:hover img{transform:scale(1.05)}
+.pj::after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 40%,rgba(0,0,0,.75));z-index:-1}
+.pj-body{position:absolute;inset:auto 24px 22px}
+.pj-body span{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:rgba(255,255,255,.2);backdrop-filter:blur(8px);padding:6px 12px;border-radius:999px}
+.pj-body h3{font-size:clamp(26px,3vw,40px);letter-spacing:-.03em;margin-top:12px;line-height:1}
+.pj-body p{opacity:.85;font-size:15px}
+
+/* TESTIMONIALS */
+.testi{background:var(--yellow);border-radius:40px;margin:0 12px}
+.t-tabs{display:inline-flex;background:rgba(22,19,15,.08);border-radius:999px;padding:5px;gap:4px;flex-wrap:wrap}
+.t-tabs button{padding:10px 18px;border-radius:999px;font-weight:600;font-size:15px}
+.t-tabs button.on{background:var(--ink);color:var(--yellow)}
+.t-grid{columns:3 300px;column-gap:14px;margin-top:40px}
+.tc{break-inside:avoid;background:var(--paper);border-radius:var(--radius);padding:26px;margin-bottom:14px;animation:rise .5s both}
+.tc .stars{color:var(--red);letter-spacing:3px;font-size:14px}
+.tc blockquote{font-size:19px;line-height:1.4;margin:12px 0 20px;letter-spacing:-.01em}
+.tc .who{display:flex;align-items:center;gap:12px}
+.tc .av{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:14px;color:#fff}
+.tc .who b{display:block;font-size:15px}.tc .who small{color:var(--muted);font-size:13px}
+
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:60px;align-items:center}
+@media(max-width:960px){.about-grid{grid-template-columns:1fr;gap:40px}}
+.about-imgs{position:relative;aspect-ratio:1/1}
+.about-imgs img{position:absolute;object-fit:cover;border-radius:var(--radius);box-shadow:0 30px 60px -20px rgba(0,0,0,.3)}
+.about-imgs img:nth-child(1){left:0;top:0;width:62%;height:70%}
+.about-imgs img:nth-child(2){right:0;top:12%;width:44%;height:46%;border-radius:200px}
+.about-imgs img:nth-child(3){right:8%;bottom:0;width:58%;height:40%}
+.about-text p{color:var(--ink-2);margin-top:20px;font-size:18px}
+.vm{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:80px}
+@media(max-width:760px){.vm{grid-template-columns:1fr}}
+.vm div{border-radius:var(--radius);padding:34px;min-height:260px;display:flex;flex-direction:column;justify-content:space-between;gap:30px}
+.vm h3{font-size:44px;letter-spacing:-.04em;font-weight:800;line-height:1}
+.vm p{font-size:20px;line-height:1.4;letter-spacing:-.01em}
+.values{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:14px}
+@media(max-width:960px){.values{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.values{grid-template-columns:1fr}}
+.val{border:1px solid var(--line);border-radius:var(--radius);padding:26px;background:#fff}
+.val .ic{width:52px;height:52px;border-radius:16px;display:grid;place-items:center;font-size:24px}
+.val h4{font-size:22px;letter-spacing:-.02em;margin:22px 0 8px}
+.val p{color:var(--muted);font-size:15px}
+.journey{margin-top:80px;display:grid;grid-template-columns:repeat(4,1fr);border-top:1.5px solid var(--ink)}
+@media(max-width:860px){.journey{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.journey{grid-template-columns:1fr}}
+.jr{padding:26px 22px 10px 0;position:relative}
+.jr::before{content:"";position:absolute;top:-8px;left:0;width:14px;height:14px;border-radius:50%;background:var(--red)}
+.jr:nth-child(2)::before{background:var(--yellow)}.jr:nth-child(3)::before{background:var(--teal)}.jr:nth-child(4)::before{background:var(--blue)}
+.jr small{font-size:12px;font-weight:700;letter-spacing:.12em;color:var(--muted)}
+.jr h4{font-size:24px;letter-spacing:-.02em;margin:6px 0}
+.jr p{font-size:15px;color:var(--ink-2)}
+.award{margin-top:60px;display:flex;align-items:center;gap:24px;background:var(--ink);color:var(--paper);border-radius:var(--radius);padding:28px 32px;flex-wrap:wrap}
+.award .medal{width:72px;height:72px;border-radius:50%;background:conic-gradient(var(--yellow),var(--red),var(--pink),var(--teal),var(--blue),var(--yellow));display:grid;place-items:center;flex:none}
+.award .medal::after{content:"★";width:54px;height:54px;border-radius:50%;background:var(--ink);display:grid;place-items:center;font-size:22px;color:var(--yellow)}
+.award h3{font-size:clamp(24px,3vw,34px);letter-spacing:-.03em}
+.award small{color:rgba(245,240,231,.6);font-size:14px;display:block}
+
+/* DEPOTS */
+.depots{background:var(--teal);color:var(--paper);border-radius:40px;margin:0 12px;overflow:hidden;position:relative}
+.depot-grid{display:grid;grid-template-columns:1fr 1.3fr;gap:50px;align-items:center}
+@media(max-width:860px){.depot-grid{grid-template-columns:1fr}}
+.depot-list{display:flex;flex-wrap:wrap;gap:10px}
+.depot-list span{font-size:clamp(20px,2.4vw,30px);font-weight:800;letter-spacing:-.03em;padding:10px 22px;border-radius:999px;border:1.5px solid rgba(255,255,255,.35);transition:background .25s,color .25s}
+.depot-list span:hover{background:var(--paper);color:var(--teal)}
+.depots p{color:rgba(245,240,231,.8);margin-top:18px;max-width:420px}
+
+/* CTA + CONTACT */
+.careers{display:grid;grid-template-columns:1fr auto;gap:30px;align-items:center;border-radius:var(--radius);padding:44px;background:var(--pink)}
+@media(max-width:760px){.careers{grid-template-columns:1fr;padding:30px}}
+.careers h3{font-size:clamp(34px,4.5vw,60px);letter-spacing:-.04em;line-height:.95}
+.careers p{margin-top:12px;max-width:520px}
+.contact-grid{display:grid;grid-template-columns:1fr 1.15fr;gap:40px;margin-top:80px}
+@media(max-width:960px){.contact-grid{grid-template-columns:1fr}}
+.c-cards{display:grid;gap:12px;margin-top:30px}
+.c-card{display:flex;gap:16px;align-items:flex-start;padding:20px;border-radius:18px;background:#fff;border:1px solid var(--line)}
+.c-card .ic{width:44px;height:44px;border-radius:12px;background:var(--paper);display:grid;place-items:center;flex:none;font-size:20px}
+.c-card b{display:block;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.c-card a:hover{color:var(--red)}
+.hours{margin-top:12px;padding:20px;border-radius:18px;background:var(--ink);color:var(--paper)}
+.hours div{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.12);font-size:15px;gap:10px}
+.hours div:last-child{border:0}
+form{background:#fff;border-radius:28px;padding:32px;border:1px solid var(--line);display:grid;grid-template-columns:1fr 1fr;gap:16px;align-content:start}
+@media(max-width:520px){form{grid-template-columns:1fr;padding:22px}}
+form h3{grid-column:1/-1;font-size:34px;letter-spacing:-.03em}
+.f{display:flex;flex-direction:column;gap:6px}.f.full{grid-column:1/-1}
+.f label{font-size:13px;font-weight:600;color:var(--muted)}
+.f input,.f select,.f textarea{font:inherit;font-size:16px;padding:14px 16px;border-radius:14px;border:1.5px solid var(--line);background:var(--paper);color:var(--ink);outline:none;transition:border .2s}
+.f input:focus,.f select:focus,.f textarea:focus{border-color:var(--ink)}
+.f textarea{min-height:130px;resize:vertical}
+.f .count{font-size:12px;color:var(--muted);align-self:flex-end}
+.sent{grid-column:1/-1;display:none;text-align:center;padding:40px 10px}
+.sent b{font-size:40px;letter-spacing:-.03em;display:block}
+form.done>*:not(.sent){display:none}form.done .sent{display:block}
+
+/* FOOTER */
+footer{background:var(--ink);color:var(--paper);padding:90px 0 30px;margin-top:110px;border-radius:40px 40px 0 0}
+.f-big{font-size:clamp(64px,15vw,230px);font-weight:800;letter-spacing:-.06em;line-height:.8;background:linear-gradient(90deg,var(--yellow),var(--red),var(--pink),var(--blue),var(--teal));-webkit-background-clip:text;background-clip:text;color:transparent}
+.f-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:30px;margin-top:70px}
+@media(max-width:860px){.f-grid{grid-template-columns:1fr 1fr}}
+.f-grid h5{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:rgba(245,240,231,.5);margin-bottom:14px}
+.f-grid a,.f-grid p{display:block;color:rgba(245,240,231,.85);font-size:15px;margin-bottom:8px}
+.f-grid a:hover{color:var(--yellow)}
+.f-logo{background:var(--paper);display:inline-block;padding:12px 18px;border-radius:14px}
+.f-logo img{height:32px}
+.f-bottom{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-top:60px;padding-top:24px;border-top:1px solid rgba(255,255,255,.12);font-size:14px;color:rgba(245,240,231,.5)}
+
+.wa{position:fixed;right:18px;bottom:18px;z-index:40;display:flex;align-items:center;gap:10px;background:#25d366;color:#08331a;font-weight:700;padding:12px 18px 12px 12px;border-radius:999px;box-shadow:0 14px 30px -10px rgba(0,0,0,.4);transition:transform .25s}
+.wa:hover{transform:translateY(-3px)}
+.wa i{width:32px;height:32px;border-radius:50%;background:#fff;display:grid;place-items:center;font-style:normal}
+
+
+/* ===== MOBILE OPTIMISATION ===== */
+html{-webkit-text-size-adjust:100%;overflow-x:hidden}
+@supports(overflow:clip){html,body{overflow-x:clip}}
+body{-webkit-tap-highlight-color:transparent}
+body.lock{overflow:hidden}
+.f input,.f select,.f textarea{width:100%;min-width:0}
+.hero-grid>*,.featured>*,.fam-stage>*,.about-grid>*,.depot-grid>*,.contact-grid>*{min-width:0}
+.nav{top:calc(12px + env(safe-area-inset-top))}
+.burger{flex:none}
+.mobile-menu{overflow-y:auto;overscroll-behavior:contain;visibility:hidden;transition:transform .5s cubic-bezier(.7,0,.2,1),visibility 0s .5s}
+.mobile-menu.open{visibility:visible;transition:transform .5s cubic-bezier(.7,0,.2,1)}
+.mobile-menu .close{top:calc(20px + env(safe-area-inset-top))}
+.wa{right:calc(16px + env(safe-area-inset-right));bottom:calc(16px + env(safe-area-inset-bottom))}
+.hero-visual{touch-action:pan-y}
+
+/* Touch screens: no sticky hover states, native swipe instead of arrow buttons */
+@media(hover:none){
+  .btn:hover,.wa:hover,.sw:hover{transform:none}
+  .cat:hover img,.pj:hover img,.insp:hover .insp-img img,.feat:hover .feat-img img{transform:none}
+  .cat:hover .go{transform:none}
+  .scroll-ctrl{display:none}
+  .insp-scroll{cursor:auto}
+}
+
+/* Tablet */
+@media(max-width:960px){
+  .hero{padding-top:112px}
+  .hero-visual{width:100%;max-width:620px;aspect-ratio:4/3.4;border-radius:150px 150px var(--radius) var(--radius)}
+  .featured{margin-top:50px}
+}
+
+/* Phone */
+@media(max-width:700px){
+  body{font-size:16px}
+  section{padding:64px 0}
+  .nav-in{padding:8px 8px 8px 16px}
+  .nav-logo img{height:28px}
+  .hero{padding:96px 0 24px}
+  .hero h1{font-size:clamp(42px,13.2vw,72px)}
+  .hero-sub{font-size:17px;margin-top:20px}
+  .hero-actions{margin-top:24px}
+  .hero-actions .btn{flex:1 1 auto;justify-content:center}
+  .hero-visual{aspect-ratio:1/1;border-radius:120px 120px var(--radius) var(--radius)}
+  .hero-tag{left:12px;bottom:12px;font-size:13px}
+  .hero-dots button{width:22px}.hero-dots button.on{width:40px}
+  .marquee{margin-top:36px;padding:16px 0}
+  .marquee-track,.marquee span{gap:28px}
+  .marquee span::after{width:16px;height:16px}
+  .stats{margin-top:40px;gap:10px}
+  .stat{min-height:150px;padding:20px 16px;border-radius:18px}
+  .stat b{font-size:clamp(26px,7.6vw,42px)}
+  .stat p{font-size:13.5px;line-height:1.35}
+  h2.big{font-size:clamp(36px,10.5vw,56px)}
+  .sec-head{margin-bottom:32px;gap:18px}
+  .featured h3{font-size:32px!important}
+  .colours,.testi,.depots{margin:0 8px;border-radius:28px}
+  .fam-tabs{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin:0 -16px 28px;padding:0 16px 4px;scroll-snap-type:x proximity}
+  .fam-tabs::-webkit-scrollbar{display:none}
+  .fam-tabs button{flex:none;font-size:14px;scroll-snap-align:start}
+  .fam-info h3{font-size:clamp(38px,11vw,56px)}
+  .swatches{grid-template-columns:repeat(2,1fr);min-height:0}
+  .sw{aspect-ratio:1.2/1}
+  .th-body h3{font-size:26px}
+  .insp-scroll{gap:12px;padding-inline:16px;scroll-padding-inline:16px}
+  .insp{flex-basis:78vw}
+  .insp h3{font-size:23px}
+  .pj{min-height:260px!important}
+  .pj-body{inset:auto 18px 18px}
+  .t-tabs{display:flex;width:100%;flex-wrap:nowrap}
+  .t-tabs button{flex:1;padding:10px 6px;font-size:14px}
+  .t-grid{margin-top:28px}
+  .tc{padding:22px}
+  .tc blockquote{font-size:17px}
+  .about-text p{font-size:16.5px}
+  .vm{margin-top:56px}
+  .vm div{padding:26px;min-height:0}
+  .vm h3{font-size:36px}
+  .vm p{font-size:17px}
+  .val{padding:22px}
+  .journey{margin-top:56px}
+  .award{padding:22px;gap:16px;margin-top:40px}
+  .award .medal{width:60px;height:60px}
+  .award .medal::after{width:44px;height:44px}
+  .depot-list{gap:8px}
+  .depot-list span{font-size:18px;padding:8px 16px}
+  .careers{padding:26px;border-radius:24px}
+  .careers .btn{justify-content:center}
+  .contact-grid{margin-top:56px;gap:32px}
+  .c-card{padding:16px;gap:14px}
+  .c-card a[href^="tel"]{display:inline-block;padding:6px 0}
+  .hours div{font-size:14px}
+  form h3{font-size:28px}
+  form .btn[type=submit]{width:100%;justify-content:center}
+  footer{padding:64px 0 calc(96px + env(safe-area-inset-bottom));margin-top:72px;border-radius:28px 28px 0 0}
+  .f-grid{margin-top:48px;gap:28px 20px}
+  .f-grid>div:first-child{grid-column:1/-1}
+  .f-bottom{margin-top:40px;flex-direction:column;gap:8px}
+  .mobile-menu{padding:calc(88px + env(safe-area-inset-top)) 20px calc(32px + env(safe-area-inset-bottom))}
+  .mobile-menu a{font-size:clamp(30px,9vw,44px)}
+  .wa{padding:10px}
+  .wa .wa-t{display:none}
+  .wa i{width:36px;height:36px;font-size:18px}
+}
+
+/* Small phone */
+@media(max-width:520px){
+  .cats{gap:10px}
+  .cat,.cat.wide{aspect-ratio:16/11}
+  .cat h3{font-size:26px}
+  .feat{flex-basis:68vw;max-width:240px}
+  form{padding:20px;border-radius:22px}
+}
+@media(max-width:360px){
+  .stats{grid-template-columns:1fr}
+  .stat{min-height:120px}
+  .stat b{font-size:40px}
+  .hero-actions .btn{width:100%}
+}
+
+.reveal{opacity:0;transform:translateY(40px);transition:opacity .9s,transform .9s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header class="nav">
+  <div class="wrap nav-in">
+    <a href="#top" class="nav-logo"><img src="https://hermosapaints.com/images/Hermosa-Logo.webp" alt="Hermosa Paints"></a>
+    <nav class="nav-links">
+      <a href="#products">Products</a><a href="#colours">Colours</a><a href="#inspiration">Inspiration</a><a href="#projects">Projects</a><a href="#about">About</a><a href="#careers">Careers</a>
+    </nav>
+    <a href="#contact" class="btn btn-dark nav-cta">Contact us <span class="arr">→</span></a>
+    <button class="burger" aria-label="Open menu" aria-controls="mm" aria-expanded="false" onclick="menu(true)">☰</button>
+  </div>
+</header>
+<div class="mobile-menu" id="mm" aria-hidden="true">
+  <button class="close" aria-label="Close menu" onclick="menu(false)">✕</button>
+  <a href="#products" onclick="menu(false)">Products</a><a href="#colours" onclick="menu(false)">Colours</a><a href="#inspiration" onclick="menu(false)">Inspiration</a><a href="#projects" onclick="menu(false)">Projects</a><a href="#about" onclick="menu(false)">About</a><a href="#careers" onclick="menu(false)">Careers</a><a href="#contact" onclick="menu(false)">Contact</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="blob" style="width:420px;height:420px;background:var(--yellow);opacity:.35;top:-120px;left:-140px"></div>
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">Made in Nairobi · Since day one</span>
+      <h1 style="margin-top:22px">
+        <span class="serif">Unleash</span>
+        colour on<br><span class="rotator" id="rot"></span>
+      </h1>
+      <p class="hero-sub">From the walls of your home to the roads of your city: paints, coatings and finishing systems engineered for Kenya's climate and crafted for beauty.</p>
+      <div class="hero-actions">
+        <a href="#products" class="btn btn-dark">Explore products <span class="arr">→</span></a>
+        <a href="#colours" class="btn btn-line">Find your colour</a>
+      </div>
+      <div class="hero-dots" id="dots"></div>
+    </div>
+    <div class="hero-visual reveal" id="hv">
+      <div class="hero-tag"><i id="htag-dot"></i><span id="htag">Interior Finishes</span></div>
+    </div>
+  </div>
+  <div class="marquee" aria-hidden="true"><div class="marquee-track" id="mq"></div></div>
+
+  <div class="wrap stats">
+    <div class="stat s1 reveal"><b data-count="3000">0</b><p>Dealers nationwide rely on Hermosa to transform spaces</p></div>
+    <div class="stat s2 reveal"><b data-count="150000">0</b><p>Painters across the country</p></div>
+    <div class="stat s3 reveal"><b data-count="10000">0</b><p>Colour palettes to choose from</p></div>
+    <div class="stat s4 reveal"><b data-count="11">0</b><p>Depots across Kenya</p></div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section id="products">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><span class="eyebrow">Our range</span><h2 class="big" style="margin-top:16px">Every surface,<br><span class="serif">covered.</span></h2></div>
+      <p>A diverse spectrum of colours and finishes across 67 products, catering to every aesthetic and every project, from a bedroom wall to a busy highway.</p>
+    </div>
+    <div class="cats" id="cats"></div>
+
+    <div class="featured reveal">
+      <div>
+        <span class="eyebrow">Interior bestsellers</span>
+        <h3 style="font-size:40px;letter-spacing:-.03em;line-height:1;margin:14px 0 14px">Walls that <span class="serif">feel</span> like home.</h3>
+        <p style="color:var(--muted)">Smooth application, consistent coverage and colours that come out exactly as selected.</p>
+        <a href="https://hermosapaints.com/pdfs/Hermosa-bronchure.pdf" target="_blank" rel="noopener" class="btn btn-dark" style="margin-top:22px">Download brochure <span class="arr">↓</span></a>
+      </div>
+      <div class="feat-list" id="feat"></div>
+    </div>
+  </div>
+</section>
+
+<!-- COLOURS -->
+<section class="colours" id="colours">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><span class="eyebrow" style="color:var(--paper)">Our colours</span><h2 class="big" style="margin-top:16px">A shade for<br><span class="serif" style="color:var(--yellow)">every feeling.</span></h2></div>
+      <p>Have a colour scheme in mind, or a shade that makes you feel great? Whatever your inspiration, we have the colour for you.</p>
+    </div>
+    <div class="fam-tabs" id="famTabs"></div>
+    <div class="fam-stage">
+      <div class="fam-info"><h3 id="famName"></h3><p id="famDesc"></p><div class="pairings" id="famPair"></div></div>
+      <div class="swatches" id="sw"></div>
+    </div>
+  </div>
+</section>
+
+<!-- THEORY -->
+<section id="theory">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><span class="eyebrow">The basics</span><h2 class="big" style="margin-top:16px">Colour <span class="serif">theory,</span><br>made simple.</h2></div>
+      <p>Colour isn't picked at random. Pick two that sit close for harmony, two from opposite sides for contrast, or one to lead them all. These three moves cover almost every scheme we build.</p>
+    </div>
+    <div class="theory">
+      <article class="th reveal">
+        <div class="th-img"><img src="https://hermosapaints.com/images/iconic%20family.webp" alt="Iconic Family colour scheme" loading="lazy"></div>
+        <div class="ratio"><i style="flex:60;background:var(--teal)"></i><i style="flex:30;background:#5aa596"></i><i style="flex:10;background:var(--yellow)"></i></div>
+        <div class="ratio-l"><span style="flex:60">60%</span><span style="flex:30">30%</span><span style="flex:10">10%</span></div>
+        <div class="th-body"><small>The 60-30-10 rule</small><h3>Iconic Family</h3>
+          <p>Neighbouring hues that share an underlying tone and never fight for attention: 60% dominant on the walls, 30% secondary on furniture or a feature wall, 10% accent on trim and decor. The safest route to a room that feels calm and put together.</p>
+          <div class="chips"><span>Blues → Greens</span><span>Creams → Yellows</span><span>Naturals → Metalics</span></div></div>
+      </article>
+      <article class="th reveal">
+        <div class="th-img"><img src="https://hermosapaints.com/images/dynamic%20duo.webp" alt="Dynamic Duo colour scheme" loading="lazy"></div>
+        <div class="ratio"><i style="flex:70;background:var(--blue)"></i><i style="flex:30;background:var(--yellow)"></i></div>
+        <div class="ratio-l"><span style="flex:70">70%</span><span style="flex:30">30%</span></div>
+        <div class="th-body"><small>The 70-30 rule</small><h3>Dynamic Duo</h3>
+          <p>Two colours from opposite sides of the wheel that make each other look more alive. Let one lead at around 70% with the other on an accent wall, door or trim. Push to 80-20 for bolder contrast. Avoid 50/50: it reads as indecisive.</p>
+          <div class="chips"><span>Blues + Yellows</span><span>Greens + Pinks</span><span>Naturals + Blues</span></div></div>
+      </article>
+      <article class="th reveal">
+        <div class="th-img"><img src="https://hermosapaints.com/images/hero%20theory.webp" alt="Hero colour rule applied" loading="lazy"></div>
+        <div class="ratio"><i style="flex:90;background:var(--red)"></i><i style="flex:10;background:#d9d2c5"></i></div>
+        <div class="ratio-l"><span style="flex:90">90–100%</span><span style="flex:10">10%</span></div>
+        <div class="th-body"><small>The 90-100% rule</small><h3>Hero</h3>
+          <p>One shade covers walls, trim and often furnishings, with white, black or grey only for breathing room. The boldest of the three and the strongest statement, best for a single standout room.</p>
+          <div class="chips"><span>Home office</span><span>Statement kitchen</span><span>Show homes</span></div></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- INSPIRATION -->
+<section id="inspiration" style="padding-top:20px">
+  <div class="wrap sec-head reveal">
+    <div><span class="eyebrow">Inspirations · 08 spaces</span><h2 class="big" style="margin-top:16px">Room by room,<br><span class="serif">your way.</span></h2></div>
+    <div class="scroll-ctrl"><button aria-label="Scroll left" onclick="sc(-1)">←</button><button aria-label="Scroll right" onclick="sc(1)">→</button></div>
+  </div>
+  <div class="insp-scroll" id="insp"></div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" style="padding-top:40px">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><span class="eyebrow">Real results</span><h2 class="big" style="margin-top:16px">Spaces we've<br><span class="serif">brought to life.</span></h2></div>
+      <a href="#contact" class="btn btn-dark">Start your project <span class="arr">→</span></a>
+    </div>
+    <div class="proj">
+      <div class="pj reveal"><img src="https://hermosapaints.com/images/merishaw.webp" alt="Merishaw School" loading="lazy"><div class="pj-body"><span>Institutional</span><h3>Merishaw School</h3><p>Nairobi</p></div></div>
+      <div class="pj reveal"><img src="https://hermosapaints.com/images/noble-park-mombasa.webp" alt="Noble Park Residence" loading="lazy"><div class="pj-body"><span>Residential</span><h3>Noble Park Residence</h3><p>Mombasa</p></div></div>
+      <div class="pj reveal"><img src="https://hermosapaints.com/images/tofina-conquest.webp" alt="Tofina Conquest Project" loading="lazy"><div class="pj-body"><span>Commercial</span><h3>Tofina Conquest</h3><p>Nairobi</p></div></div>
+      <div class="pj reveal"><img src="https://hermosapaints.com/images/parkview-renovations.webp" alt="Parkview Renovations" loading="lazy"><div class="pj-body"><span>Renovation</span><h3>Parkview Renovations</h3><p>Nairobi</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testi">
+  <div class="wrap">
+    <div class="sec-head reveal" style="margin-bottom:0">
+      <div><span class="eyebrow">What they say</span><h2 class="big" style="margin-top:16px">Loved by<br><span class="serif">those who know.</span></h2></div>
+      <div class="t-tabs" id="tTabs">
+        <button class="on" data-g="all">All</button><button data-g="Painters">Painters</button><button data-g="Dealers">Dealers</button><button data-g="Homeowners">Homeowners</button>
+      </div>
+    </div>
+    <div class="t-grid" id="tGrid"></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="wrap">
+    <div class="about-grid">
+      <div class="about-imgs reveal">
+        <img src="https://hermosapaints.com/images/about%20us%20hero1.webp" alt="Colourful houses painted with Hermosa Paints" loading="lazy">
+        <img src="https://hermosapaints.com/images/about%20us%20hero2.webp" alt="Vibrant Hermosa-painted homes" loading="lazy">
+        <img src="https://hermosapaints.com/images/about%20us%20hero3.webp" alt="Colourful Hermosa-painted buildings" loading="lazy">
+      </div>
+      <div class="about-text reveal">
+        <span class="eyebrow">Our story</span>
+        <h2 class="big" style="margin-top:16px">Transforming spaces through the <span class="serif">art of colour.</span></h2>
+        <p>Hermosa Paints is a vibrant, innovative company established with a vision to provide high-quality paints that inspire creativity and enhance aesthetics. We've grown to become one of Kenya's most trusted paint brands.</p>
+        <p>From interior walls to busy highways, from wooden furniture to metal structures, our comprehensive range of coatings is engineered for Kenya's climate, tested for durability and crafted for beauty.</p>
+      </div>
+    </div>
+
+    <div class="vm">
+      <div class="reveal" style="background:var(--blue);color:#fff"><h3>Vision</h3><p>To be East Africa's most trusted and innovative paint company, delivering transformative colour solutions that elevate every space, inspire every builder, and brighten every life.</p></div>
+      <div class="reveal" style="background:var(--red);color:#fff"><h3>Mission</h3><p>Manufacturing paints and building solutions that make your projects beautiful, durable and sustainable, backed by expert guidance, accessible pricing and a passion for colour.</p></div>
+    </div>
+    <div class="values">
+      <div class="val reveal"><div class="ic" style="background:#fde7c0">🎨</div><h4>Creativity</h4><p>We push the boundaries of colour and finish, turning every surface into an opportunity for expression.</p></div>
+      <div class="val reveal"><div class="ic" style="background:#fbd8d1">🏗️</div><h4>Quality</h4><p>Every can is formulated to the highest standards, engineered to last through Kenya's toughest conditions.</p></div>
+      <div class="val reveal"><div class="ic" style="background:#cfe6df">🌿</div><h4>Sustainability</h4><p>We actively reduce VOC emissions and invest in eco-friendly formulations, kind to people and planet.</p></div>
+      <div class="val reveal"><div class="ic" style="background:#d6e0f7">🤝</div><h4>Community</h4><p>From local contractors to major developers, we partner with our community to build a more colourful Kenya.</p></div>
+    </div>
+
+    <div class="journey reveal">
+      <div class="jr"><small>FOUNDED</small><h4>Hermosa begins</h4><p>Founded in Nairobi's Industrial Area with a bold vision and a small, passionate team.</p></div>
+      <div class="jr"><small>EXPANSION</small><h4>Going national</h4><p>Distribution grows to 11+ depots, bringing Hermosa colours across the country.</p></div>
+      <div class="jr"><small>INNOVATION</small><h4>67-product range</h4><p>A full portfolio spanning interior, exterior, wood, metal, road, floor, roof, thinners and specialty finishes.</p></div>
+      <div class="jr"><small>TODAY</small><h4>Brightening lives</h4><p>150,000+ painters and 10,000+ palettes, unleashing colour across East Africa.</p></div>
+    </div>
+    <div class="award reveal"><div class="medal"></div><div><small>Recognised for excellence</small><h3>Fastest Growing Paints Company</h3></div></div>
+  </div>
+</section>
+
+<!-- DEPOTS -->
+<section class="depots">
+  <div class="wrap depot-grid">
+    <div class="reveal"><span class="eyebrow" style="color:var(--paper)">Nationwide reach</span><h2 class="big" style="margin-top:16px">Never far<br><span class="serif">from colour.</span></h2>
+      <p>Stocked and delivered from depots strategically placed across Kenya, so wherever your next project is, quality paint is close by.</p></div>
+    <div class="depot-list reveal">
+      <span>Nairobi</span><span>Mombasa</span><span>Kisumu</span><span>Nakuru</span><span>Eldoret</span><span>Kitale</span><span>Nyeri</span><span>Meru</span><span>Machakos</span><span>Garissa</span><span>Kisii</span>
+    </div>
+  </div>
+</section>
+
+<!-- CAREERS + CONTACT -->
+<section id="contact">
+  <div class="wrap">
+    <div class="careers reveal" id="careers">
+      <div><span class="eyebrow">Join our team</span><h3 style="margin-top:14px">Careers at <span class="serif">Hermosa</span></h3>
+        <p>We're always looking for driven, creative people to help bring colour to homes and businesses across Kenya. Browse openings and apply directly. No account needed.</p></div>
+      <a href="mailto:info@hermosapaints.com?subject=Careers%20at%20Hermosa" class="btn btn-dark">View open positions <span class="arr">→</span></a>
+    </div>
+
+    <div class="contact-grid">
+      <div class="reveal">
+        <span class="eyebrow">Get in touch</span>
+        <h2 class="big" style="margin-top:16px">Let's bring your<br><span class="serif">vision to life.</span></h2>
+        <div class="c-cards">
+          <div class="c-card"><div class="ic">📞</div><div><b>Call us</b><a href="tel:+254794899999">0794 899 999</a> · <a href="tel:+254794919191">0794 919 191</a> · <a href="tel:+254759111333">0759 111 333</a></div></div>
+          <div class="c-card"><div class="ic">✉️</div><div><b>Email us</b><a href="mailto:info@hermosapaints.com">info@hermosapaints.com</a><br><small style="color:var(--muted)">We respond within 24 hrs on business days.</small></div></div>
+          <div class="c-card"><div class="ic">📍</div><div><b>Visit us</b>Highport Properties, Road C, Industrial Area<br>P.O. Box 78895-00507, Nairobi, Kenya<br><a href="https://maps.app.goo.gl/u95vbXp23NXQifUE8" target="_blank" rel="noopener" style="font-weight:600;color:var(--red)">Get directions →</a></div></div>
+        </div>
+        <div class="hours">
+          <div><span>Monday – Friday</span><span>8:00 AM – 5:30 PM</span></div>
+          <div><span>Saturday</span><span>8:30 AM – 2:00 PM</span></div>
+          <div><span>Sunday & Public Holidays</span><span>Closed</span></div>
+        </div>
+      </div>
+
+      <form class="reveal" id="cform" novalidate>
+        <h3>Send a message</h3>
+        <div class="f"><label for="fn">First name</label><input id="fn" required></div>
+        <div class="f"><label for="ln">Last name</label><input id="ln" required></div>
+        <div class="f"><label for="em">Email address</label><input id="em" type="email" required></div>
+        <div class="f"><label for="ph">Phone number</label><input id="ph" type="tel"></div>
+        <div class="f full"><label for="tp">What can we help with?</label>
+          <select id="tp"><option>Product Enquiry</option><option>Colour Consultation</option><option>Bulk / Trade Order</option><option>Distributor Partnership</option><option>Other</option></select></div>
+        <div class="f full"><label for="msg">Message</label><textarea id="msg" maxlength="500" required></textarea><span class="count" id="cnt">0/500</span></div>
+        <div class="full"><button class="btn btn-dark" type="submit">Send message <span class="arr">→</span></button></div>
+        <div class="sent"><b>Message sent! 🎨</b><p style="color:var(--muted);margin:10px 0 20px">We'll get back to you within 24 hours.</p><button type="button" class="btn btn-line" onclick="resetForm()">Send another</button></div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="f-big">Hermosa.</div>
+    <div class="f-grid">
+      <div><div class="f-logo"><img src="https://hermosapaints.com/images/Hermosa-Logo.webp" alt="Hermosa Paints"></div><p style="margin-top:18px;max-width:300px">Unleashing colours and brightening lives across East Africa.</p></div>
+      <div><h5>Explore</h5><a href="#products">Products</a><a href="#colours">Colours</a><a href="#theory">Colour theory</a><a href="#inspiration">Inspiration</a></div>
+      <div><h5>Company</h5><a href="#about">About us</a><a href="#projects">Projects</a><a href="#careers">Careers</a><a href="#contact">Contact</a></div>
+      <div><h5>Follow</h5><a href="https://www.linkedin.com/company/hermosa-paints-limited/" target="_blank" rel="noopener">LinkedIn</a><a href="https://x.com/HermosaPaints" target="_blank" rel="noopener">X</a><a href="https://hermosapaints.com/pdfs/Hermosa-bronchure.pdf" target="_blank" rel="noopener">Brochure</a></div>
+    </div>
+    <div class="f-bottom"><span>© 2026 Hermosa Paints Limited. All rights reserved.</span><span>Cookie Policy · Cookie Settings</span></div>
+  </div>
+</footer>
+
+<a class="wa" href="https://wa.me/254794899999?text=Hi%20Hermosa%20Paints%2C%20I%27d%20like%20to%20know%20more%20about%20your%20products." target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp"><i>💬</i><span class="wa-t">Chat with us</span></a>
+
+<script>
+const I='https://hermosapaints.com/images/';
+const heroes=[
+ ['Interior Finishes','hero-interior','interiors','#e2452f'],['Exterior Finishes','hero-exterior','exteriors','#f3b63a'],
+ ['Wood Finishes','hero-wood','wood','#9a6232'],['Metal Finishes','hero-metal','metal','#2c5fd6'],
+ ['Road Finishes','hero-road','roads','#16130f'],['Texture Products','hero-texture','texture','#ee8fa8'],
+ ['Floor Finishes','hero-floor','floors','#1f7a6d'],['Roof Finishes','hero-roof','roofs','#b8432f'],
+ ['Waterproofing','hero-waterproofing','everything','#3a8fc4']];
+const hv=document.getElementById('hv'),rot=document.getElementById('rot'),dots=document.getElementById('dots');
+rot.innerHTML=heroes.map(h=>`<span>${h[2]}.</span>`).join('');
+heroes.forEach((h,i)=>{const im=new Image();im.dataset.src=I+h[1]+'.webp';im.alt=h[0];im.decoding='async';hv.prepend(im);
+  const b=document.createElement('button');b.setAttribute('aria-label',h[0]);b.onclick=()=>show(i,true);dots.appendChild(b)});
+const imgs=[...hv.querySelectorAll('img')].reverse();let cur=0,timer;
+function show(i,user){cur=i;[i,(i+1)%imgs.length].forEach(k=>{const m=imgs[k];if(!m.getAttribute('src'))m.src=m.dataset.src});imgs.forEach((im,j)=>im.classList.toggle('on',j===i));
+  [...dots.children].forEach((d,j)=>d.classList.toggle('on',j===i));
+  rot.querySelectorAll('span').forEach(s=>s.style.transform=`translateY(-${i*100}%)`);
+  document.getElementById('htag').textContent=heroes[i][0];document.getElementById('htag-dot').style.background=heroes[i][3];
+  if(user){clearInterval(timer);timer=setInterval(()=>show((cur+1)%heroes.length),4200)}}
+show(0);timer=setInterval(()=>show((cur+1)%heroes.length),4200);
+let tx=null;hv.addEventListener('touchstart',e=>{tx=e.touches[0].clientX},{passive:true});
+hv.addEventListener('touchend',e=>{if(tx===null)return;const dx=e.changedTouches[0].clientX-tx;tx=null;
+  if(Math.abs(dx)>40)show((cur+(dx<0?1:heroes.length-1))%heroes.length,true)},{passive:true});
+
+const mqw=['Interior','Exterior','Wood','Metal','Road','Thinners & Solvents','Floor','Roof','Waterproofing','Texture','Auxiliary'];
+document.getElementById('mq').innerHTML=[...mqw,...mqw].map(w=>`<span>${w}</span>`).join('');
+
+const cats=[['Interior','Finishes','hero-interior',1],['Exterior','Finishes','hero-exterior'],['Wood','Finishes','hero-wood'],['Metal','Finishes','hero-metal'],
+ ['Road','Finishes','hero-road'],['Thinners','& Solvents','product-exterior'],['Floor','Finishes','hero-floor'],['Auxiliary','Products','hero-auxiliary'],
+ ['Waterproofing','Products','hero-waterproofing',0,1],['Roof','Finishes','hero-roof'],['Texture','Products','hero-texture',0,1]];
+document.getElementById('cats').innerHTML=cats.map((c,i)=>`<a href="#contact" class="cat reveal${i===0||i===10?' wide':''}">
+ <img src="${I+c[2]}.webp" alt="${c[0]} ${c[1]}" loading="lazy">${c[4]?'<span class="badge">New</span>':''}<span class="num">${String(i+1).padStart(2,'0')} / 11</span>
+ <div class="cat-body"><h3>${c[0]}<em>${c[1]}</em></h3><span class="go">↗</span></div></a>`).join('');
+
+const feats=[['Vinyl Matt Emulsion','vinyl-matt-emulsion'],['Super Covermatt','super-covermatt'],['Silk Vinyl Emulsion','silk-vinyl-emulsion'],['Eco-Plast Emulsion','eco-plast-emulsion'],['Luxury Satin','luxury-satin']];
+document.getElementById('feat').innerHTML=feats.map(f=>`<div class="feat"><div class="feat-img"><img src="${I}product-${f[1]}.webp" alt="${f[0]}" loading="lazy"></div><h4>${f[0]}</h4><small>Interior finish</small></div>`).join('');
+
+const fams={
+ Whites:{d:'Crisp, bright and endlessly versatile: the clean canvas every scheme starts from.',s:[['#fbfaf6'],['#f3f1ea'],['#ebe8df'],['#dfdcd2']],p:[]},
+ Creams:{d:'Warm and inviting classic elegance. Rich, buttery tones that create a timeless atmosphere.',s:[['#f6efdd','Ivory Silk'],['#efdfbd','Champagne'],['#f3e6c4','Vanilla Bean'],['#e7dac2','Warm Linen']],p:['Forest Green','Terracotta','Antique Gold']},
+ Pinks:{d:'From soft blush to confident rose, tones that add warmth and personality.',s:[['#f8dfe0'],['#f1bfc6'],['#e491a0'],['#c86478']],p:[]},
+ Naturals:{d:'Earthy, grounded shades drawn from stone, clay and timber.',s:[['#e6dccb'],['#cdb99b'],['#a68b6b'],['#7a6550']],p:[]},
+ Yellows:{d:'Sunlit and optimistic, from soft butter to deep golden ochre.',s:[['#fbefc2'],['#f6dc7d'],['#efc04a'],['#cc9a2c']],p:[]},
+ Greens:{d:'Fresh and restorative, from pale sage to deep forest.',s:[['#dde7d6'],['#b2c7a5'],['#7c9c72'],['#3f5f45']],p:[]},
+ Blues:{d:'Calm, cool and clear, from sky tones through to deep navy.',s:[['#dbe7f1'],['#a9c6de'],['#5f8fbf'],['#22416b']],p:[]},
+ Metalics:{d:'Shimmering finishes that catch the light and add instant luxury.',s:[['linear-gradient(135deg,#f3e2a8,#b98d3c)'],['linear-gradient(135deg,#eceef0,#9aa0a6)'],['linear-gradient(135deg,#e8b48e,#9c5b38)'],['linear-gradient(135deg,#5b5b60,#1f1f22)']],p:[]},
+ 'Fine Finishes':{d:'Refined, smooth-textured effects for walls that feel tailored.',s:[['#e9e2d6'],['#d5c7b2'],['#b5a58e'],['#8e806d']],p:[]},
+ 'Stoneless Finishes':{d:'Natural stone character without the weight: durable texture with depth.',s:[['#d8d2c8'],['#bdb4a6'],['#9b9283'],['#6f685d']],p:[]}};
+const ft=document.getElementById('famTabs');
+Object.keys(fams).forEach((k,i)=>{const b=document.createElement('button');b.innerHTML=`<i style="background:${fams[k].s[2][0]}"></i>${k}`;b.onclick=()=>fam(k,b);ft.appendChild(b);if(k==='Creams')setTimeout(()=>fam(k,b))});
+function fam(k,b){[...ft.children].forEach(x=>x.classList.remove('on'));b.classList.add('on');const f=fams[k];
+ document.getElementById('famName').textContent=k;document.getElementById('famDesc').textContent=f.d;
+ document.getElementById('famPair').innerHTML=f.p.length?'<span style="border:0;padding-left:0;opacity:.6">Designer pairings:</span>'+f.p.map(p=>`<span>${p}</span>`).join(''):'';
+ document.getElementById('sw').innerHTML=f.s.map((s,i)=>{const dark=i>=2&&k!=='Creams';return `<div class="sw" style="background:${s[0]};color:${dark?'#fff':'#16130f'}">${s[1]?s[1]:''}${s[0].startsWith('#')?`<code>${s[0].toUpperCase()}</code>`:''}</div>`}).join('')}
+
+const insp=[['Bath Room','Wet Spaces','insp-bathroom','More than functional, a place of relaxation and rejuvenation.'],
+ ['Kitchen Space','Living & Cooking','insp-kitchen','Grease-resistant, wipeable finishes in warm, appetising tones.'],
+ ['Bed Room','Rest & Calm','insp-bedroom','A haven of peace, an embodiment of rest and calm.'],
+ ['Living Room','Comfort & Warmth','insp-living-room','A masterpiece of comfort and warmth.'],
+ ['Home Office','Focus & Flow','insp-home-office','Clear-headed colour that makes working from home feel less like a compromise.'],
+ ['Dining Room','Gather & Entertain','insp-dining-room','Where colour gets braver, built for conversation and good light.'],
+ ['Kids Room','Play & Grow','insp-kids-room','Playful, durable and easy to refresh, it grows with them.'],
+ ['Outdoor & Patio','Open Air','insp-outdoor-patio',"Colour that handles sun, rain and everything Kenya's seasons bring."]];
+document.getElementById('insp').innerHTML=insp.map((x,i)=>`<article class="insp"><div class="insp-img"><img src="${I+x[2]}.webp" alt="${x[0]}" loading="lazy"></div>
+ <div class="insp-meta"><b>0${i+1}</b><div><h3><em>${x[1]}</em>${x[0]}</h3><p>${x[3]}</p></div></div></article>`).join('');
+const is=document.getElementById('insp');function sc(d){is.scrollBy({left:d*380,behavior:'smooth'})}
+let down=false,sx,sl;is.onmousedown=e=>{down=true;sx=e.pageX;sl=is.scrollLeft};window.onmouseup=()=>down=false;
+is.onmousemove=e=>{if(down){e.preventDefault();is.scrollLeft=sl-(e.pageX-sx)}};
+
+const T=[
+ ['Painters','John','Painter, Nairobi',"I've used many paint brands over the years, but Hermosa gives me consistent coverage and smooth application. I finish jobs faster and my clients are always impressed with the final look."],
+ ['Painters','Peter','Painter, Nakuru','The colours come out exactly as selected, and the paint spreads well. That saves me time, reduces wastage, and helps me deliver quality work every time.'],
+ ['Painters','Samuel','Painter, Kisumu',"My customers keep asking which paint I use because the finish looks premium. Since I switched to Hermosa, I've received more referrals."],
+ ['Painters','Brian','Painter, Mombasa',"Whether it's interior or exterior work, Hermosa performs well. The finish is clean, durable, and easy to maintain."],
+ ['Painters','David','Painter, Eldoret','The rewards program is a bonus. I earn while doing the work I love, and my clients get a quality finish they can trust.'],
+ ['Dealers','Hardware Dealer','Machakos','Hermosa moves quickly off our shelves because customers come back asking for it. Repeat purchases have been encouraging.'],
+ ['Dealers','Paint Retailer','Meru','The support from the sales team and product training has made it easier for us to recommend the right products with confidence.'],
+ ['Dealers','Hardware Owner','Nairobi',"Customers appreciate the wide range of colours and competitive pricing. It's a brand that's easy to sell."],
+ ['Dealers','Dealer','Nyeri',"We've seen steady growth in sales since introducing Hermosa. The consistent quality has built trust with our customers."],
+ ['Dealers','Retail Partner','Kisii','The tinting system is accurate, and customers rarely return with complaints. That has strengthened our reputation as a reliable paint supplier.'],
+ ['Homeowners','Grace','Homeowner, Nairobi','I wanted my home to feel brighter, and Hermosa delivered exactly that. The colours transformed every room.'],
+ ['Homeowners','James','Homeowner, Kiambu',"The painters recommended Hermosa, and I'm glad they did. The finish looks elegant and still looks fresh months later."],
+ ['Homeowners','Faith','Homeowner, Nakuru','I found the perfect colour for my living room. Everyone who visits compliments the walls.'],
+ ['Homeowners','Mary','Homeowner, Mombasa','The paint covered my old wall colour in fewer coats than I expected. The results exceeded my expectations.'],
+ ['Homeowners','Daniel','Homeowner, Machakos','Building a home is a big investment, so I wanted a paint I could trust. Hermosa gave my family the beautiful finish they had imagined.']];
+const avc=['#e2452f','#1f7a6d','#2c5fd6','#c86478','#9a6232'];
+function renderT(g){document.getElementById('tGrid').innerHTML=T.filter(t=>g==='all'||t[0]===g).map((t,i)=>`<div class="tc" style="animation-delay:${i*.04}s"><div class="stars">★★★★★</div><blockquote>“${t[3]}”</blockquote>
+ <div class="who"><span class="av" style="background:${avc[i%5]}">${t[1].split(' ').map(w=>w[0]).join('').slice(0,2)}</span><div><b>${t[1]}</b><small>${t[2]}</small></div></div></div>`).join('')}
+renderT('all');
+document.querySelectorAll('#tTabs button').forEach(b=>b.onclick=()=>{document.querySelectorAll('#tTabs button').forEach(x=>x.classList.remove('on'));b.classList.add('on');renderT(b.dataset.g)});
+
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');
+  const n=e.target.querySelector('[data-count]');if(n&&!n.done){n.done=1;const end=+n.dataset.count,t0=performance.now();
+   (function tick(t){const p=Math.min((t-t0)/1600,1),v=Math.round(end*(1-Math.pow(1-p,3)));n.textContent=v.toLocaleString()+(p===1?'+':'');if(p<1)requestAnimationFrame(tick)})(t0)}
+  io.unobserve(e.target)}}),{threshold:.15});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+function menu(o){const m=document.getElementById('mm');m.classList.toggle('open',o);m.setAttribute('aria-hidden',!o);
+  document.body.classList.toggle('lock',o);document.querySelector('.burger').setAttribute('aria-expanded',o)}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')menu(false)});
+matchMedia('(min-width:961px)').addEventListener('change',e=>{if(e.matches)menu(false)});
+const cf=document.getElementById('cform'),msg=document.getElementById('msg');
+msg.oninput=()=>document.getElementById('cnt').textContent=msg.value.length+'/500';
+cf.onsubmit=e=>{e.preventDefault();let ok=true;cf.querySelectorAll('[required]').forEach(f=>{const v=f.type==='email'?/^\S+@\S+\.\S+$/.test(f.value):f.value.trim();f.style.borderColor=v?'':'var(--red)';if(!v)ok=false});if(ok)cf.classList.add('done')};
+function resetForm(){cf.reset();cf.classList.remove('done');document.getElementById('cnt').textContent='0/500'}
+</script>
+</body>
+</html>
